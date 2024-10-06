@@ -1,7 +1,7 @@
 ﻿@page "/counter"
 @using SqliteWasmHelper
-@inject ISqliteWasmDbContextFactory<ThingContext> Factory
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
@@ -28,6 +28,7 @@ else
 }
 
 @code {
+    [Inject] ISqliteWasmDbContextFactory<ThingContext> Factory
     private int currentCount = 0;
     private static IComponentRenderMode pageRenderMode = InteractiveWebAssembly;
     List<Thing> Things = new();
