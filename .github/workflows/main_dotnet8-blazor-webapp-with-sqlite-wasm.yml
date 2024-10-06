@@ -27,7 +27,7 @@ jobs:
         run: dotnet build ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM -c Release -o ${{ github.workspace }}/published
+        run: dotnet publish ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM -c Release -o ${{ runner.workspace }}/published
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
