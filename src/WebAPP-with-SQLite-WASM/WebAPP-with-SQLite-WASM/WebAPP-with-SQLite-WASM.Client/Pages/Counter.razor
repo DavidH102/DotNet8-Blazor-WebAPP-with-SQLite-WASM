@@ -10,16 +10,28 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-@foreach (var thing in Things)
+@if (isLoading)
 {
-    <p>
-        @thing.Id @thing.Name
-    </p>
+    <div class="loading-animation">Loading...</div>
 }
+else
+{
+    <div class="things-container">
+        @foreach (var thing in Things)
+        {
+            <div class="thing-item">
+                <p class="thing-id">ID: @thing.Id</p>
+                <p class="thing-name">Name: @thing.Name</p>
+            </div>
+        }
+    </div>
+}
+
 @code {
     private int currentCount = 0;
     private static IComponentRenderMode pageRenderMode = InteractiveWebAssembly;
     List<Thing> Things = new();
+    private bool isLoading = true;
 
     protected override async Task OnInitializedAsync()
     {
@@ -27,6 +39,7 @@
         ctx.Database.EnsureCreated();
 
         Things = ctx.Things.ToList();
+        isLoading = false;
     }
 
     private async Task IncrementCount()
