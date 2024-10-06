@@ -10,7 +10,7 @@ This project uses the [SqliteWasmHelper](https://github.com/JeremyLikness/Sqlite
 
 ## Overview
 
-This demo shows how to integrate SQLite in a Blazor WebAssembly app, leveraging the new .NET 8 WebApp template that supports hybrid rendering modes. The project allows for running in both WebAssembly and server-side modes while keeping data persistence in the browser using SQLite.
+This demo shows how to integrate SQLite in a .NET 8 WebApp template app, leveraging the new .NET 8 WebApp template that supports hybrid rendering modes. The project allows for running in both WebAssembly and server-side modes while keeping data persistence in the browser using SQLite.
 
 ## Prerequisites
 
