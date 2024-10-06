@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,37 +20,13 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Restore dependencies
-        run: dotnet restore ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM
+      - name: Restore, Build, and Publish
+        run: |
+          dotnet restore ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM
+          dotnet build ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM --configuration Release
+          dotnet publish ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM -c Release -o ${{ github.workspace }}/published
 
-      - name: Build with dotnet
-        run: dotnet build ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM --configuration Release
-
-      - name: dotnet publish
-        run: dotnet publish ./src/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM/WebAPP-with-SQLite-WASM -c Release -o ${{ runner.workspace }}/published
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
-          name: published
-          path: ${{ github.workspace }}/published
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'Production'
-    permissions:
-      id-token: write # This is required for requesting the JWT
-      contents: read
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: published
-      
-      - name: Login to Azure
+      - name: Deploy to Azure Web App
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B11B62F4F5424C99AED213BF074E84A1 }}
