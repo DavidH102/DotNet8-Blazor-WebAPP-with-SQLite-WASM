@@ -13,7 +13,7 @@ namespace WebAPP_with_SQLite_WASM.Client
             builder.Services.AddSqliteWasmDbContextFactory<ThingContext>(opts =>
             {
                 opts.UseSqlite("Data Source=things.sqlite3");
-                opts.LogTo(_ => { }, LogLevel.None); // Disable logging for performance reasons
+                opts.LogTo(_ => { }, LogLevel.None);  // Disable EF Core logging for performance reasons
             });
             await builder.Build().RunAsync();
         }
