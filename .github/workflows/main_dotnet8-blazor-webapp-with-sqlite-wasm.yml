@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: windows-latest
 
-    steps:
+   steps:
       - uses: actions/checkout@v4
 
       - name: Set up .NET Core
@@ -21,17 +21,20 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}./published
+        run: dotnet publish ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} -c Release -o ${{ env.DOTNET_ROOT }}/published
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: published
-          path: ${{env.DOTNET_ROOT}}./published
+          path: ${{ env.DOTNET_ROOT }}/published
 
   deploy:
     runs-on: windows-latest
