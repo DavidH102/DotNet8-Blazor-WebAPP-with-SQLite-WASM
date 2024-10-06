@@ -28,10 +28,10 @@ else
 }
 
 @code {
-    [Inject] ISqliteWasmDbContextFactory<ThingContext> Factory
+    [Inject] ISqliteWasmDbContextFactory<ThingContext> Factory { get; set; } = null!;
     private int currentCount = 0;
     private static IComponentRenderMode pageRenderMode = InteractiveWebAssembly;
-    List<Thing> Things = new();
+    private List<Thing> Things = new();
     private bool isLoading = true;
 
     protected override async Task OnInitializedAsync()
