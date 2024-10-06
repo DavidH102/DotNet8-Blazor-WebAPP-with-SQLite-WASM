@@ -12,6 +12,11 @@ This project uses the [SqliteWasmHelper](https://github.com/JeremyLikness/Sqlite
 
 This demo shows how to integrate SQLite in a .NET 8 WebApp template app, leveraging the new .NET 8 WebApp template that supports hybrid rendering modes. The project allows for running in both WebAssembly and server-side modes while keeping data persistence in the browser using SQLite.
 
+## Demo Link
+
+Check out the live demo: [dotnet8-blazor-webapp-with-sqlite-wasm.azurewebsites.net](https://dotnet8-blazor-webapp-with-sqlite-wasm.azurewebsites.net)
+
+
 ## Prerequisites
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
