@@ -37,7 +37,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var ctx = await Factory.CreateDbContextAsync();
-        ctx.Database.EnsureCreated();
+        await ctx.Database.EnsureCreatedAsync();
 
         Things = ctx.Things.ToList();
         isLoading = false;
@@ -50,11 +50,9 @@ else
         NewThing.Name = $"Thing {currentCount}";
 
         using var ctx = await Factory.CreateDbContextAsync();
-        ctx.Database.EnsureCreated();
-
-        ctx.Things.Add(NewThing);
+        await ctx.Database.EnsureCreatedAsync();
+        await ctx.Things.AddAsync(NewThing);
         await ctx.SaveChangesAsync();
-
         Things = ctx.Things.ToList();
     }
 }
