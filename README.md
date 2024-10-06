@@ -1,9 +1,5 @@
 # SqliteWasmHelper Demo for .NET 8 WebApp
 
-[![.NET Builds](https://github.com/JeremyLikness/SqliteWasmHelper/actions/workflows/build.yml/badge.svg)](https://github.com/JeremyLikness/SqliteWasmHelper/actions/workflows/build.yml)
-[![.NET Tests](https://github.com/JeremyLikness/SqliteWasmHelper/actions/workflows/tests.yml/badge.svg)](https://github.com/JeremyLikness/SqliteWasmHelper/actions/workflows/tests.yml)
-[![Generate and Publish Documentation](https://github.com/JeremyLikness/SqliteWasmHelper/actions/workflows/documentation.yml/badge.svg)](https://github.com/JeremyLikness/SqliteWasmHelper/actions/workflows/documentation.yml)
-
 This project uses the [SqliteWasmHelper](https://github.com/JeremyLikness/SqliteWasmHelper) repository to demonstrate working with SQLite in a Blazor WebAssembly app using the new .NET 8 WebApp template. The project has been updated to work with both WebAssembly and server-side Blazor.
 
 > **Note**: This demo follows the original SqliteWasmHelper repository with modifications for the .NET 8 WebApp template. You can follow the [original project here](https://github.com/JeremyLikness/SqliteWasmHelper) for further reference.
