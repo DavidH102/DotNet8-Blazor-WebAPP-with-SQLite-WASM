@@ -11,6 +11,9 @@ on:
 
 jobs:
   build-and-deploy:
+    permissions:
+      id-token: write
+      contents: read
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
