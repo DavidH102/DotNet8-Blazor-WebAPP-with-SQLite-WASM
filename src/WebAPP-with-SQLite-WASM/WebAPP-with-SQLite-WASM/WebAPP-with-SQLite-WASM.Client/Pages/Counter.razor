@@ -29,6 +29,7 @@ else
 
 @code {
     [Inject] ISqliteWasmDbContextFactory<ThingContext> Factory { get; set; } = null!;
+    [Inject] IJSRuntime jsRuntime { get; set; } = null!;
     private int currentCount = 0;
     private static IComponentRenderMode pageRenderMode = InteractiveWebAssembly;
     private List<Thing> Things = new();
@@ -41,6 +42,13 @@ else
 
         Things = ctx.Things.ToList();
         isLoading = false;
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeVoidAsync("deleteElementById", "loading");
+        }
     }
 
     private async Task IncrementCount()
